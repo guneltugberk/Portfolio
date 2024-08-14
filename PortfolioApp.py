@@ -15,7 +15,7 @@ def load_lottie_url(url: str):
 def main():
     st.set_page_config(
         layout="wide",
-        page_icon="🧳",
+        page_icon="🎓",
         page_title="Berat Tuğberk Günel - Portfolio"
     )
 

@@ -123,17 +123,30 @@ def main():
         unsafe_allow_html=True)
 
         cv_file = "CV.pdf"  
-
-        with open(cv_file, "rb") as cv:
-            cv_data = cv.read()
-
         trans_file = "Transcript.pdf"
 
-        with open(trans_file, "rb") as tra:
-            trans_data = tra.read()
+        try:
 
-        b64_cv = base64.b64encode(cv_data).decode()
-        b64_trans = base64.b64encode(trans_data).decode()
+            with open(cv_file, "rb") as cv:
+                cv_data = cv.read()
+            
+            b64_cv = base64.b64encode(cv_data).decode()
+            to_cv = f'<a href="data:application/octet-stream;base64,{b64_cv}" download="Resume_BTGUNEL.pdf">Resume</a>'
+        
+        except:
+            to_cv = '<strong style="color: red;">The resume is not available is not available</strong>'
+
+
+        try:
+            with open(trans_file, "rb") as tra:
+                trans_data = tra.read()
+
+            b64_trans = base64.b64encode(trans_data).decode()
+            to_trans = f'<a href="data:application/octet-stream;base64,{b64_trans}" download="Transcript_BTGUNEL.pdf">Transcript</a>'
+        
+        except:
+            to_trans = '<strong style="color: red;">The transcript is not available is not available</strong>'
+
 
         st.markdown(f"""
             <div style='text-align: justify;'>
@@ -145,8 +158,8 @@ def main():
                 <p><a href="https://www.linkedin.com/in/berat-tuğberk-günel-928460173/">LinkedIn</a> | 
                 <a href="https://github.com/guneltugberk">GitHub</a> | 
                 <a href="https://scholar.google.com/citations?hl=tr&user=EHUbYYUAAAAJ&view_op=list_works&gmla=AC6lMd9do7qJIa3zNX2ZGa3fhhqz2yADJyGWJndn80RISWQy976ciMbAf-bgpKoHI41iRPYi5fSxA75U94LjTWp4IcKmfg">Google Scholar</a> | 
-                <a href="data:application/octet-stream;base64,{b64_cv}" download="Berat_Tugberk_Gunel_CV.pdf">Resume</a> |
-                <a href="data:application/octet-stream;base64,{b64_trans}" download="Berat_Tugberk_Gunel_Transcript.pdf">Transcript</a></p>
+                {to_cv} |
+                {to_trans} </p>
             </div>
             <div class="divider"></div>
         """, unsafe_allow_html=True)
@@ -253,8 +266,6 @@ def main():
                 """, 
                 unsafe_allow_html=True)
 
-
-
     # Projects Section
     if selected == 'Projects':
         st.markdown("""
@@ -271,11 +282,29 @@ def main():
                 st_lottie(lottie_projects, height=350, key="Projects")
 
             with col4:
-                st.markdown("""
+                grad_file = "Graduation.pdf"
+
+                try:
+                    with open(grad_file, "rb") as gra:
+                        grad_data = gra.read()
+
+                    b64_grad = base64.b64encode(grad_data).decode()
+                    to_grad = f'<a href="data:application/octet-stream;base64,{b64_grad}" download="Graduation Project.pdf">Paper</a>'
+                
+                except:
+                    to_grad = '<strong style="color: red;">The graduation project is not available is not available</strong>'
+
+
+                st.markdown(f"""
                     <div class="container" style="text-align: justify;">
                         <div style="display: flex; gap: 40px;">
                             <div style="flex: 1; text-align: center;">
                                 <ul style="font-size: 18px; font-family: Arial, sans-serif;">
+                                    <li><strong style="font-size: 20px;">Full Field Development Project, A Case Study</strong>
+                                        <ul style="font-size: 16px; font-family: Arial, sans-serif;">
+                                            <li>Graduation Project | {to_grad}</li>
+                                        </ul>
+                                    </li>
                                     <li><strong style="font-size: 20px;">A Machine Learning Approach to Solids Content Estimation of Drilling Fluids</strong>
                                         <ul style="font-size: 16px; font-family: Arial, sans-serif;">
                                             <li>Project Website: <a href="https://beesolids.streamlit.app" style="color: #1E90FF;">Bee Solids Website</a></li>

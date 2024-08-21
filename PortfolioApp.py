@@ -339,7 +339,7 @@ def main():
         with col5:
             st.markdown("""
                 <div class="container form-container">
-                    <form action="https://formsubmit.co/berat-tugberk.gunel.2025@ifp-school.com" method="POST">
+                    <form action="https://formsubmit.co/614e555f5879effda136ee7800295661" method="POST">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Your Email" required>
                         <textarea name="message" placeholder="Your Message" required></textarea>
